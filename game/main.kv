@@ -1,0 +1,41 @@
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+<RootScreen>:
+    transition: FadeTransition() 
+    StartScreen:
+    GameScreen:
+
+<StartScreen>:
+    name: "start"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'image.jpg'
+    FloatLayout:
+      # This part doesn't seem to work
+        source: "image.jpg"
+        allow_stretch: True
+        keep_ratio: False
+        size_hint: 1, 1
+        Label:
+            text: "Welcome to SpeedGaze technologies"
+            size_hint_x: 1.0
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
+            font_size: 40
+        Button:
+            text: "Click me!"
+            size_hint: 0.3, 0.1
+            pos_hint: {'center_x':.5, 'center_y':.2}
+            font_size: 40
+            color:1,1,1,1
+            on_release: root.manager.current = "game"
+<GameScreen>:
+    name: "game"
+    FloatLayout:
+        Button:
+            text: "Welcome!"
+            font_size: 70
+            on_release: root.manager.current  = "start"
